@@ -1,29 +1,28 @@
 /* Center the content in the browser */
 .container {
-    background-color: #332009;
+    background-color: #080604;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    text-align: justify;
     align-items: center;
     border-radius: 10px; 
-    border: 2px solid #260216; 
-    color: black;
+    border: 1px solid #9e0f5e; 
+    color: aliceblue;
   }
   
   /* Style for each person */
   .person {
-    margin-bottom: 20px;
     padding: 15px;
-    border: 2px solid #190601; 
+    border: 1px solid #b83818; 
     border-radius: 5px; 
     text-align: center; 
-    width: 300px; 
+    width: 400px; 
   }
   
   /* Header styling */
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
   }
   
