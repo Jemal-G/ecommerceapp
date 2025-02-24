@@ -1,5 +1,5 @@
 {
-  "whyContinueWithGen1": "I am a current Gen 1 user",
+  "whyContinueWithGen1": "I find the Gen 1 CLI easier to use",
   "projectName": "cryptoapp",
   "version": "3.1",
   "frontend": "javascript",
@@ -8,8 +8,8 @@
     "config": {
       "SourceDir": "src",
       "DistributionDir": "dist",
-      "BuildCommand": "npm run script build",
-      "StartCommand": "npm run script preview"
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script preview"
     }
   },
   "providers": [
