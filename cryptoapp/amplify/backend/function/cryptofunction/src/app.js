@@ -61,7 +61,45 @@ app.get('/coins', async function(req, res) {
     console.error("API fetch error:", error);
     res.json([]);
   }
-})
+});
+
+
+//new  added app route /born
+
+app.get('/born', async (req, res) => {
+  try {
+    // 1) Check query params from API Gateway
+    // If user is not provided, default to "Jemal-G"
+    let username = 'Jemal-G';
+    if (req.apiGateway && req.apiGateway.event.queryStringParameters) {
+      const { user } = req.apiGateway.event.queryStringParameters;
+      if (user) {
+        username = user;
+      }
+    }
+
+    // 2) Call GitHub API for that user
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    const json = await response.json();
+
+    // 3) If GitHub returns an error (like 404), handle it
+    if (!response.ok) {
+      throw new Error(json.message || 'Failed to fetch GitHub data');
+    }
+
+    // 4) Return the data you need
+    res.json({
+      name: json.login,       // e.g., "Jemal-G"
+      created_at: json.created_at, // e.g., "2018-12-09T14:28:49Z"
+    });
+  } catch (error) {
+    console.error('Error fetching GitHub user data:', error);
+    // Return an object or status code to indicate error
+    res.status(500).json({ error: error.message || 'Internal Server Error' });
+  }
+});
+
+
 
 
 

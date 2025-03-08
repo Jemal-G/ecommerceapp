@@ -6,21 +6,30 @@
 
 }
 .App {
-  /* background-color:#d3cc6af0; */
-  color: azure;
   text-align: center;
-  text-transform: uppercase;
-  border-radius: 10px;
+  margin: 20px auto;
+  width: 600px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App input {
+  margin: 0 5px;
+  padding: 5px;
 }
+
+.App button {
+  padding: 6px 10px;
+  margin: 10px;
+}
+
+.App h2 {
+  margin-bottom: 0;
+}
+
+.App h5 {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {

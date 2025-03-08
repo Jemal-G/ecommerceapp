@@ -1,36 +1,46 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { get } from 'aws-amplify/api';
 
 function GitHubBornOn() {
-  const [githubInfo, setGithubInfo] = useState({ 
-    login: 'loading...', 
-    created_at: 'loading...' 
-  });
+  const [githubData, setGithubData] = useState(null);
+  const [username, setUsername] = useState('Jemal-G'); 
+  async function fetchGitHubBornOn() {
+    try {
+      // Pass the username as a query param: ?user=<username>
+      const request = get({
+        apiName: 'cryptoapi',
+        path: `/born?user=${username}`,
+      });
+      const response = await request.response;
+      const data = await response.body.json();
 
-  useEffect(() => {
-    async function fetchGitHubData() {
-      try {
-        const request = get({
-          apiName: 'cryptoapi',
-          path: '/born'
-        });
-        const response = await request.response;
-        const data = await response.body.json();
-        setGithubInfo(data);
-      } catch (error) {
-        console.error('Error fetching GitHub data:', error);
-        setGithubInfo({
-          login: 'error',
-          created_at: 'failed to load data'
-        });
-      }
+      console.log('GitHub user data:', data);
+      setGithubData(data);
+    } catch (error) {
+      console.error('Error fetching GitHub data:', error);
+      setGithubData(null);
     }
-    fetchGitHubData();
+  }
+
+  // Fetch once on mount 
+  useEffect(() => {
+    fetchGitHubBornOn();
   }, []);
 
   return (
-    <div className="github-info">
-      GitHub user {githubInfo.login} was born on {new Date(githubInfo.created_at).toLocaleDateString()}
+    <div style={{ marginTop: '40px' }}>
+    
+      {/* Show loading or error if no data */}
+      {!githubData ? (
+        <p>Loading GitHub user info...</p>
+      ) : githubData.error ? (
+        <p style={{ color: 'red' }}>{githubData.error}</p>
+      ) : (
+        <p>
+          The GitHub user <b>{githubData.name}</b> was born on{' '}
+          <b>{githubData.created_at}</b>
+        </p>
+      )}
     </div>
   );
 }
