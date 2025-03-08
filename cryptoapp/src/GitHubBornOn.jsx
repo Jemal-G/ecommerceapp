@@ -37,7 +37,7 @@ function GitHubBornOn() {
         <p style={{ color: 'red' }}>{githubData.error}</p>
       ) : (
         <p>
-          The GitHub user <b>{githubData.name}</b> was born on{' '}
+          MyGitHub user name is <b>{githubData.name}</b> was born on{' '}
           <b>{githubData.created_at}</b>
         </p>
       )}
