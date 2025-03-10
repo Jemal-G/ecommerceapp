@@ -54,6 +54,7 @@ function App() {
       <GitHubBornOn />
     </div>
   );
+  
 }
 
 export default App;
