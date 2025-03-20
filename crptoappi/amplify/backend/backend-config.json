@@ -21,5 +21,23 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
+  },
+  "parameters": {
+    "AMPLIFY_function_cryptoappifunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cryptoappifunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_cryptoappifunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cryptoappifunction"
+        }
+      ]
+    }
   }
 }
