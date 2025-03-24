@@ -12,7 +12,7 @@ function App() {
   const fetchCoins = async () => {
     try {
       const request = get({
-        apiName: 'cryptoappi',
+        apiName: 'crptoappi',
         path: `/coins?limit=${input.limit}&start=${input.start}`,
       });
       const response = await request.response;
