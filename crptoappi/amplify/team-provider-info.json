@@ -20,6 +20,12 @@
       },
       "api": {
         "crptoappi": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d28mubedr77bjq",
+          "type": "manual"
+        }
       }
     }
   }

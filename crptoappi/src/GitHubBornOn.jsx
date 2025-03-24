@@ -3,12 +3,12 @@ import { get } from 'aws-amplify/api';
 
 function GitHubBornOn() {
   const [githubData, setGithubData] = useState(null);
-  const [username, setUsername] = useState('Jemal-G'); 
-  async function fetchGitHubBornOn() {
+  const [username, setUsername] = useState('Jemal-G');
+
+  const fetchGitHubBornOn = async () => {
     try {
-      // Pass the username as a query param: ?user=<username>
       const request = get({
-        apiName: 'cryptoapi',
+        apiName: 'crptoappi',
         path: `/born?user=${username}`,
       });
       const response = await request.response;
@@ -20,25 +20,21 @@ function GitHubBornOn() {
       console.error('Error fetching GitHub data:', error);
       setGithubData(null);
     }
-  }
+  };
 
-  // Fetch once on mount 
   useEffect(() => {
     fetchGitHubBornOn();
   }, []);
 
   return (
     <div style={{ marginTop: '40px' }}>
-    
-      {/* Show loading or error if no data */}
       {!githubData ? (
         <p>Loading GitHub user info...</p>
       ) : githubData.error ? (
         <p style={{ color: 'red' }}>{githubData.error}</p>
       ) : (
         <p>
-          MyGitHub user name is <b>{githubData.name}</b> was born on{' '}
-          <b>{githubData.created_at}</b>
+          My GitHub username is <b>{githubData.name}</b> and was created on <b>{githubData.created_at}</b>
         </p>
       )}
     </div>

@@ -1,31 +1,28 @@
-import { useState, useEffect } from "react";
-import { get } from "aws-amplify/api";
-import "./App.css";
-import GitHubBornOn from "./GitHubBornOn";
+import { useState, useEffect } from 'react';
+import { get } from 'aws-amplify/api';
+import './App.css';
+import GitHubBornOn from './GitHubBornOn';
 
 function App() {
-  const [coins, updateCoins] = useState([]);
-  const [input, updateInput] = useState({ limit: 5, start: 0 });
+  const [coins, setCoins] = useState([]);
+  const [input, setInput] = useState({ limit: 5, start: 0 });
 
-  function updateInputValues(type, value) {
-    updateInput({ ...input, [type]: value });
-  }
+  const updateInputValues = (type, value) => setInput({ ...input, [type]: value });
 
-  async function fetchCoins() {
-    const { limit, start } = input;
+  const fetchCoins = async () => {
     try {
       const request = get({
-        apiName: "cryptoapi",
-        path: `/coins?limit=${limit}&start=${start}`,
+        apiName: 'cryptoappi',
+        path: `/coins?limit=${input.limit}&start=${input.start}`,
       });
       const response = await request.response;
       const data = await response.body.json();
-      updateCoins(data.coins || []);
+      setCoins(data.coins || []);
     } catch (error) {
-      console.error("Error fetching coins:", error);
-      updateCoins([]);
+      console.error('Error fetching coins:', error);
+      setCoins([]);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCoins();
@@ -33,14 +30,8 @@ function App() {
 
   return (
     <div className="App">
-      <input
-        onChange={(e) => updateInputValues("limit", e.target.value)}
-        placeholder="Enter Starting Index"
-      />
-      <input
-        placeholder="start from"
-        onChange={(e) => updateInputValues("start", e.target.value)}
-      />
+      <input onChange={(e) => updateInputValues('limit', e.target.value)} placeholder="Enter Limit" />
+      <input onChange={(e) => updateInputValues('start', e.target.value)} placeholder="Enter Start Index" />
       <button onClick={fetchCoins}>Fetch Coins</button>
 
       {coins.map((coin, index) => (
@@ -50,11 +41,9 @@ function App() {
         </div>
       ))}
 
-      {/* Renders the dynamic GitHub user data */}
       <GitHubBornOn />
     </div>
   );
-  
 }
 
 export default App;
