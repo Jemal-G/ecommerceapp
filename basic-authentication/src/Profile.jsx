@@ -1,32 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { getCurrentUser, signOut } from 'aws-amplify/auth';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Container from './Container';
 
-function Profile({ signOut, user }) {
-  const [currentUser, setCurrentUser] = useState(user);
+function Profile({signOut, user}) {
 
-  useEffect(() => {
-    async function checkUser() {
+    useEffect(() => {
+      checkUser()
+    }, []);
+    const [currentUser, setCurrentUser] = useState(user || {});
+     async function checkUser() {
       try {
-        const current = await getCurrentUser();
-        setCurrentUser({ ...current?.signInDetails?.loginId && { username: current.signInDetails.loginId }, ...user });
-      } catch (err) {
-        console.error('Error fetching user:', err);
-      }
+       const userAttributes = await fetchUserAttributes();
+       setCurrentUser({ ...userAttributes, ...user });
+      } catch (error) { console.log('error: ', error); }
     }
-
-    checkUser();
-  }, [user]);
-
   return (
     <Container>
       <h1>Profile</h1>
-      <h2>Username: {currentUser.username || 'N/A'}</h2>
-      <h3>Email: {currentUser.email || 'N/A'}</h3>
-      <h4>Phone: {currentUser.phone || 'N/A'}</h4>
-      <button onClick={signOut}>Sign Out</button>
+      <h2>Username: {currentUser.username}</h2>
+      <h3>Email: {currentUser.email}</h3>
+      <h4>Phone: {currentUser.phone_number ?? 'unknown'}</h4>
+      <button onClick={signOut}>SignOut</button>
     </Container>
   );
 }

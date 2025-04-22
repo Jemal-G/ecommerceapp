@@ -1,9 +1,11 @@
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
+import React, { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 import config from './aws-exports'
-import App from './App'
+import { Router } from 'react-router'
+import 'antd/dist/reset.css'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App';
 import './index.css'
 // main.jsx or App.jsx
 import { Amplify } from 'aws-amplify';
@@ -13,8 +15,10 @@ Amplify.configure(awsExports);
 
 Amplify.configure(config)
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <HashRouter>
-    <App />
-  </HashRouter>
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <StrictMode>
+      <App />
+    </StrictMode>
+  </BrowserRouter>
 )
