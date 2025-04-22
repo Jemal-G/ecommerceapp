@@ -26,6 +26,7 @@ const Router = () => {
         <Route exact path="/" component={Public}/>
         <Route exact path="/protected" component={Protected} />
         <Route exact path="/profile" component={Profile}/>
+        <Route exact path="/Project05" component={Project05}/>
         <Route component={Public}/>
       </Switch>
     </HashRouter>

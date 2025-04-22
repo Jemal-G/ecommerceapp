@@ -5,6 +5,7 @@ import {
   HomeOutlined,
   ProfileOutlined,
   FileProtectOutlined,
+  AppstoreOutlined, 
 } from '@ant-design/icons'
 
 const Nav = ({ current, onSelect }) => {
@@ -13,6 +14,7 @@ const Nav = ({ current, onSelect }) => {
     '/': 'public',
     '/profile': 'profile',
     '/protected': 'protected',
+    '/project05': 'project05', 
   }[location.pathname] || 'public'
 
   const selectedKey = current || pathKey
@@ -32,6 +34,11 @@ const Nav = ({ current, onSelect }) => {
       key: 'protected',
       icon: <FileProtectOutlined />,
       label: <Link to="/protected">Protected</Link>,
+    },
+    {
+      key: 'project05',
+      icon: <AppstoreOutlined />, 
+      label: <Link to="/project05">Project05</Link>, 
     },
   ]
 

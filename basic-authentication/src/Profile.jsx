@@ -4,24 +4,29 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Container from './Container';
 
-function Profile({ signOut: injectedSignOut }) {
-  const [user, setUser] = useState({});
+function Profile({ signOut, user }) {
+  const [currentUser, setCurrentUser] = useState(user);
 
   useEffect(() => {
-    getCurrentUser()
-      .then(data => setUser({ username: data.username }))
-      .catch(console.error);
-  }, []);
+    async function checkUser() {
+      try {
+        const current = await getCurrentUser();
+        setCurrentUser({ ...current?.signInDetails?.loginId && { username: current.signInDetails.loginId }, ...user });
+      } catch (err) {
+        console.error('Error fetching user:', err);
+      }
+    }
+
+    checkUser();
+  }, [user]);
 
   return (
     <Container>
       <h1>Profile</h1>
-      <p>Username: {user.username}</p>
-      <button onClick={() => {
-        signOut().then(() => window.location.reload());
-      }}>
-        Sign out
-      </button>
+      <h2>Username: {currentUser.username || 'N/A'}</h2>
+      <h3>Email: {currentUser.email || 'N/A'}</h3>
+      <h4>Phone: {currentUser.phone || 'N/A'}</h4>
+      <button onClick={signOut}>Sign Out</button>
     </Container>
   );
 }
