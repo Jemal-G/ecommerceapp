@@ -1,27 +1,31 @@
 import { useState, useEffect } from 'react';
+
 import { get } from 'aws-amplify/api';
 import './App.css';
-import GitHubBornOn from './GitHubBornOn';
+//import GitHubBornOn from './GitHubBornOn';
 
 function App() {
-  const [coins, setCoins] = useState([]);
-  const [input, setInput] = useState({ limit: 5, start: 0 });
 
-  const updateInputValues = (type, value) => setInput({ ...input, [type]: value });
+  // Create coins variable and set to empty array
+  const [coins, updateCoins] = useState([])
+ // Create additional state to hold user input for limit and start properties
+const [input, updateInput] = useState({ limit: 5, start: 0 })
 
-  const fetchCoins = async () => {
-    try {
-      const request = get({
-        apiName: 'crptoappi',
-        path: `/coins?limit=${input.limit}&start=${input.start}`,
-      });
-      const response = await request.response;
-      const data = await response.body.json();
-      setCoins(data.coins || []);
-    } catch (error) {
-      console.error('Error fetching coins:', error);
-      setCoins([]);
-    }
+// Create a new function to allow users to update the input values
+function updateInputValues(type, value) {
+  updateInput({ ...input, [type]: value })
+}
+ //define function to all API
+  async function fetchCoins() {
+    const { limit, start } = input
+    const request =  get({
+      apiName: 'cryptoappi',
+      path: `/coins?limit=${limit}&start=${start}`,
+    })
+    const response = await request.response;
+    const data = await response.body.json();
+    console.log('data is', data);
+    updateCoins(data.coins);
   };
 
   useEffect(() => {
@@ -30,9 +34,15 @@ function App() {
 
   return (
     <div className="App">
-      <input onChange={(e) => updateInputValues('limit', e.target.value)} placeholder="Enter Limit" />
-      <input onChange={(e) => updateInputValues('start', e.target.value)} placeholder="Enter Start Index" />
-      <button onClick={fetchCoins}>Fetch Coins</button>
+        <input
+          onChange={e => updateInputValues('limit', e.target.value)}
+          placeholder="limit"
+        />
+        <input
+          placeholder="start"
+          onChange={e => updateInputValues('start', e.target.value)}
+        />
+        <button onClick={fetchCoins}>Fetch Coins</button>
 
       {coins.map((coin, index) => (
         <div key={index}>
@@ -41,7 +51,6 @@ function App() {
         </div>
       ))}
 
-      <GitHubBornOn />
     </div>
   );
 }
