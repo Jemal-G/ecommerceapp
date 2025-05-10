@@ -1,0 +1,10 @@
+{
+  "resourceName": "roducttable",
+  "tableName": "roducttable",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
