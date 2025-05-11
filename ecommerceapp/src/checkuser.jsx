@@ -2,25 +2,16 @@ import { fetchAuthSession } from "aws-amplify/auth";
 
 async function checkUser(updateUser) {
   try {
-        const userData = await fetchAuthSession();
-
-        if (!userData.token) {
-        console.log("userData: ", userData);
-        updateUser({});
-        return;
-        }
-
-        const {
-        idToken: { payload },
-        } = userData.tokens;
-        const isAuthorized =
-        payload["cognito:groups"] && payload["cognito:groups"].includes("Admin");
-        updateUser({
-        username: payload["cognito:username"],
-        isAuthorized,
-        });
-    } catch (error) {
-        console.error("checkuser failed", error);
+    const userData = await fetchAuthSession();
+    const { accessToken: { payload } } = userData.tokens;
+    const groups = payload["cognito:groups"] || [];
+    const isAdmin = groups.includes("Admin");
+    updateUser({
+      username: payload["cognito:username"],
+      isAdmin,
+    });
+  } catch (error) {
+    updateUser({ isAdmin: false });
   }
 }
 
