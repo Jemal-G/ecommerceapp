@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"13.0.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Prefer not to answer\"}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"13.0.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Gen 2 is missing features I need from Gen 1\"}}",
   "Parameters": {
     "GROUP": {
       "Type": "String",
@@ -67,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommerceapp8149f03fPostConfirmation",
+            "ecommerceapp49145189PostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommerceapp8149f03fPostConfirmation",
+                  "ecommerceapp49145189PostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -122,12 +122,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommerceapp8149f03fPostConfirmation",
+            "ecommerceapp49145189PostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommerceapp8149f03fPostConfirmation",
+                  "ecommerceapp49145189PostConfirmation",
                   "-",
                   {
                     "Ref": "env"

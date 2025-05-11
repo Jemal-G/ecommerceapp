@@ -3,7 +3,7 @@ import  { useState } from 'react'
 import './App.css'
 import { Input, Button } from 'antd'
 
-import { POST } from 'aws-amplify/api'
+import { post } from 'aws-amplify/api'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 
 const initialState = {

@@ -1,9 +1,9 @@
 /* src/Nav.js */
 import React, { useState, useEffect } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet,useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import { HomeOutlined, UserOutlined, ProfileOutlined } from '@ant-design/icons'
-import { Hub } from 'aws-amplify'
+import { Hub } from 'aws-amplify/utils'
 import checkUser from './checkUser'
 
 const navLinks = (isAdmin) => {
@@ -47,7 +47,9 @@ return navLinks
 
 const Nav = () => {
   const [selectedpage,setSelectedPage] = useState('home');
-  const location = userLocation();
+
+  const location = useLocation();
+
   const [user, updateUser] = useState({})
   useEffect(() => {
 
@@ -72,10 +74,10 @@ const Nav = () => {
 
   return (
     <>
-      <Menu items = {getnavLinks(user.isAuthorized)} selectedKeys={[selectedpage]} mode="horizontal"/>
+      <Menu items = {navLinks(user.isAuthorized)} selectedKeys={[selectedpage]} mode="horizontal"/>
     <Outlet />
     </>
   )
 }
 
-export default Nav
+export default Nav 

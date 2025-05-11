@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"13.0.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Prefer not to answer\"}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"13.0.1\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"Gen 2 is missing features I need from Gen 1\"}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,21 +16,21 @@
     "s3Key": {
       "Type": "String"
     },
-    "authecommerceapp8149f03fUserPoolId": {
+    "authecommerceapp49145189UserPoolId": {
       "Type": "String",
-      "Default": "authecommerceapp8149f03fUserPoolId"
+      "Default": "authecommerceapp49145189UserPoolId"
     },
-    "storageroducttableName": {
+    "storageproducttableName": {
       "Type": "String",
-      "Default": "storageroducttableName"
+      "Default": "storageproducttableName"
     },
-    "storageroducttableArn": {
+    "storageproducttableArn": {
       "Type": "String",
-      "Default": "storageroducttableArn"
+      "Default": "storageproducttableArn"
     },
-    "storageroducttableStreamArn": {
+    "storageproducttableStreamArn": {
       "Type": "String",
-      "Default": "storageroducttableStreamArn"
+      "Default": "storageproducttableStreamArn"
     }
   },
   "Conditions": {
@@ -86,17 +86,17 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "AUTH_ECOMMERCEAPP8149F03F_USERPOOLID": {
-              "Ref": "authecommerceapp8149f03fUserPoolId"
+            "AUTH_ECOMMERCEAPP49145189_USERPOOLID": {
+              "Ref": "authecommerceapp49145189UserPoolId"
             },
-            "STORAGE_RODUCTTABLE_NAME": {
-              "Ref": "storageroducttableName"
+            "STORAGE_PRODUCTTABLE_NAME": {
+              "Ref": "storageproducttableName"
             },
-            "STORAGE_RODUCTTABLE_ARN": {
-              "Ref": "storageroducttableArn"
+            "STORAGE_PRODUCTTABLE_ARN": {
+              "Ref": "storageproducttableArn"
             },
-            "STORAGE_RODUCTTABLE_STREAMARN": {
-              "Ref": "storageroducttableStreamArn"
+            "STORAGE_PRODUCTTABLE_STREAMARN": {
+              "Ref": "storageproducttableStreamArn"
             }
           }
         },
@@ -117,12 +117,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommerceappLambdaRole9c749fc7",
+            "ecommerceappLambdaRole7ae0e721",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommerceappLambdaRole9c749fc7",
+                  "ecommerceappLambdaRole7ae0e721",
                   "-",
                   {
                     "Ref": "env"
@@ -308,7 +308,7 @@
                       },
                       ":userpool/",
                       {
-                        "Ref": "authecommerceapp8149f03fUserPoolId"
+                        "Ref": "authecommerceapp49145189UserPoolId"
                       }
                     ]
                   ]
@@ -337,14 +337,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageroducttableArn"
+                  "Ref": "storageproducttableArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageroducttableArn"
+                        "Ref": "storageproducttableArn"
                       },
                       "index/*"
                     ]

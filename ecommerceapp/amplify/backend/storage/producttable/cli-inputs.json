@@ -1,6 +1,6 @@
 {
-  "resourceName": "roducttable",
-  "tableName": "roducttable",
+  "resourceName": "producttable",
+  "tableName": "producttable",
   "partitionKey": {
     "fieldName": "id",
     "fieldType": "string"

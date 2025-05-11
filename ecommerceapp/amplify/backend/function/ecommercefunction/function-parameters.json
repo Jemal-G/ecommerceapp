@@ -1,7 +1,7 @@
 {
   "permissions": {
     "auth": {
-      "ecommerceapp8149f03f": [
+      "ecommerceapp49145189": [
         "create",
         "read",
         "update",
@@ -9,7 +9,7 @@
       ]
     },
     "storage": {
-      "roducttable": [
+      "producttable": [
         "create",
         "read",
         "update",

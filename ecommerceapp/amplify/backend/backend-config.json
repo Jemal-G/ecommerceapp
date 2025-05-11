@@ -16,7 +16,7 @@
     }
   },
   "auth": {
-    "ecommerceapp8149f03f": {
+    "ecommerceapp49145189": {
       "customAuth": false,
       "dependsOn": [
         {
@@ -25,7 +25,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "ecommerceapp8149f03fPostConfirmation",
+          "resourceName": "ecommerceapp49145189PostConfirmation",
           "triggerProvider": "Cognito"
         }
       ],
@@ -52,7 +52,7 @@
     }
   },
   "function": {
-    "ecommerceapp8149f03fPostConfirmation": {
+    "ecommerceapp49145189PostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -65,7 +65,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "ecommerceapp8149f03f"
+          "resourceName": "ecommerceapp49145189"
         },
         {
           "attributes": [
@@ -74,7 +74,7 @@
             "StreamArn"
           ],
           "category": "storage",
-          "resourceName": "roducttable"
+          "resourceName": "producttable"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -82,17 +82,49 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_ecommerceapp8149f03fPostConfirmation_GROUP": {
+    "AMPLIFY_function_ecommerceapp49145189PostConfirmation_GROUP": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "ecommerceapp8149f03fPostConfirmation"
+          "resourceName": "ecommerceapp49145189PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceapp49145189PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommerceapp49145189PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceapp49145189PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommerceapp49145189PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommercefunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommercefunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommercefunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommercefunction"
         }
       ]
     }
   },
   "storage": {
-    "roducttable": {
+    "producttable": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }
