@@ -1,5 +1,6 @@
 
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useEffect,useState } from 'react'
 import { Menu } from 'antd'
 import {
   HomeOutlined,
@@ -7,48 +8,59 @@ import {
   FileProtectOutlined,
   AppstoreOutlined, 
 } from '@ant-design/icons'
-
-const Nav = ({ current, onSelect }) => {
-  const location = useLocation()
-  const pathKey = {
-    '/': 'public',
-    '/profile': 'profile',
-    '/protected': 'protected',
-    '/project05': 'project05', 
-  }[location.pathname] || 'public'
-
-  const selectedKey = current || pathKey
-
-  const items = [
+const navLinks = [
     {
       key: 'public',
-      icon: <HomeOutlined />,
-      label: <Link to="/">Home</Link>,
+      label: (<Link to="/">
+        <HomeOutlined />
+        Home
+        </Link>
+        ),
     },
     {
       key: 'profile',
-      icon: <ProfileOutlined />,
-      label: <Link to="/profile">Profile</Link>,
+      label: (<Link to="/profile">
+        <ProfileOutlined />
+        Profile
+      </Link>),
     },
     {
       key: 'protected',
-      icon: <FileProtectOutlined />,
-      label: <Link to="/protected">Protected</Link>,
+      label: (<Link to="/protected">
+        <FileProtectOutlined />
+        Protected
+      </Link>),
     },
     {
       key: 'project05',
-      icon: <AppstoreOutlined />, 
-      label: <Link to="/project05">Project05</Link>, 
+      label: (<Link to="/project05">
+        <AppstoreOutlined />
+        Project05
+      </Link>),
     },
   ]
 
+
+const Nav = () => {
+  const { selected, setSelected } = useState('public');
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname.split('/')[1];
+    console.log(location);
+    setSelected(currentPath ? currentPath : 'public');
+
+  },[location]);
   return (
-    <Menu
-      mode="horizontal"
-      selectedKeys={[selectedKey]}
-      items={items}
-      onClick={(e) => onSelect && onSelect(e.key)}
-    />
+    <div>
+      <Menu
+        selectedKeys={[selected]}
+        items={navLinks}
+        onClick={(e) => setSelected(e.key)}
+        mode="horizontal"
+      />
+      <Outlet />
+    </div>
   )
 }
 

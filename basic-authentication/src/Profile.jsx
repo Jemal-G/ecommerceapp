@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchUserAttributes } from 'aws-amplify/auth';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import { withAuthenticator,AmplifySignOu } from '@aws-amplify/ui-react';
+
 import Container from './Container';
 
 function Profile({signOut, user}) {

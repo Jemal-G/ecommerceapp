@@ -1,3 +1,4 @@
+/* Root and theme variables */
 :root {
   --amplify-primary-tint: #1890ff;
   --amplify-primary-shade: #1890ff;
@@ -5,21 +6,48 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --amplify-primary-color: #1890ff;
-  --amplify-primary-tint: #1890ff;
-  --amplify-primary-shade: #1890ff;
- 
 }
 
+/* Remove flex centering from body to avoid nav issues */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: inherit;
+}
+
+/* App container for centering main content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Make Ant Design menu/nav full width and horizontal */
+.ant-menu {
+  width: 100vw;
+  justify-content: center;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+/* Responsive nav for mobile */
+@media (max-width: 600px) {
+  .ant-menu {
+    flex-direction: column !important;
+    width: 100vw;
+  }
+}
+
+/* Links */
 a {
   font-weight: 500;
   color: #646cff;
@@ -29,19 +57,13 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
+/* Headings */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Buttons */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -61,6 +83,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Light mode overrides */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
