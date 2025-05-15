@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchUserAttributes } from 'aws-amplify/auth';
-import { withAuthenticator,AmplifySignOu } from '@aws-amplify/ui-react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import "antd/dist/reset.css";
 
 import Container from './Container';
 

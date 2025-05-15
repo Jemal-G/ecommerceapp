@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "basicauthentication02534593": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2z5j8jrg18582",
+          "type": "manual"
+        }
       }
     }
   }
