@@ -1,63 +1,35 @@
-import { useState, useEffect } from "react";
-import { get } from 'aws-amplify/api';
-import "./App.css";
-import GitHubBornOn from "./GitHubBornOn";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 function App() {
-  const [coins, updateCoins] = useState([]);
-  const [input, updateInput] = useState({ limit: 5, start: 0 });
-
-  function updateInputValues(type, value) {
-    updateInput({ ...input, [type]: value });
-  }
-
-  async function fetchCoins() {
-    const { limit, start } = input;
-    try {
-      // returns { response, cancel }
-      const op = get({
-        apiName: 'cryptoapi',
-        path: '/coins',
-        options: { queryParams: { limit, start } }
-      });
-      const { response } = op;
-      const { body } = await response;
-      const json = await body.json();
-      updateCoins(json.coins || []);
-    } catch (e) {
-      console.error('Error fetching coins:', e);
-      updateCoins([]);
-    }
-  }
-
-  useEffect(() => {
-    fetchCoins();
-  }, []);
+  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <input
-        onChange={(e) => updateInputValues("limit", e.target.value)}
-        placeholder="Enter Starting Index"
-      />
-      <input
-        placeholder="start from"
-        onChange={(e) => updateInputValues("start", e.target.value)}
-      />
-      <button onClick={fetchCoins}>Fetch Coins</button>
-
-      {coins.map((coin, index) => (
-        <div key={index}>
-          <h2>{coin.name} - {coin.symbol}</h2>
-          <h5>${coin.price_usd}</h5>
-        </div>
-      ))}
-
-      {/* Renders the dynamic GitHub user data */}
-      <GitHubBornOn />
-    </div>
-  );
-  
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
 }
 
-export default App;
+export default App
